@@ -66,7 +66,7 @@ def test_get_segment_by_id():
     segment = CongestionService.get_segment_by_id("LOC_A")
     assert segment is not None
     assert segment.location_id == "LOC_A"
-    assert "Downtown" in segment.name
+    assert "HITEC" in segment.name
 
     # Non-existent segment should return None
     missing = CongestionService.get_segment_by_id("UNKNOWN_LOC")

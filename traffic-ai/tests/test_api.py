@@ -80,7 +80,7 @@ def test_api_get_segment_by_id(client):
     assert response.status_code == 200
     data = response.json()
     assert data["location_id"] == "LOC_A"
-    assert "Downtown" in data["name"]
+    assert "HITEC" in data["name"]
     assert data["congestion_level"] in ["LOW", "MEDIUM", "HIGH"]
 
     # 404 for invalid segment

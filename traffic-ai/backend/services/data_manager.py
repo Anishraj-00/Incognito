@@ -10,26 +10,26 @@ DATA_FILE = DATA_DIR / "synthetic_traffic.csv"
 MODEL_DIR = PROJECT_ROOT / "models"
 MODEL_FILE = MODEL_DIR / "traffic_model.joblib"
 
-# Default segment geographical coordinates & descriptive names
+# Default segment geographical coordinates & descriptive names (Hyderabad, India)
 SEGMENT_METADATA: Dict[str, Dict[str, Any]] = {
     "LOC_A": {
-        "name": "Downtown Core Corridor (Main St)",
-        "latitude": 37.7749,
-        "longitude": -122.4194,
-        "free_flow_speed": 60.0
+        "name": "HITEC City - Cyber Towers Junction",
+        "latitude": 17.4504,
+        "longitude": 78.3808,
+        "free_flow_speed": 50.0,
     },
     "LOC_B": {
-        "name": "North Expressway (I-80 Interchange)",
-        "latitude": 37.7858,
-        "longitude": -122.4065,
-        "free_flow_speed": 75.0
+        "name": "Begumpet - Punjagutta Flyover",
+        "latitude": 17.4375,
+        "longitude": 78.4550,
+        "free_flow_speed": 45.0,
     },
     "LOC_C": {
-        "name": "Harbor Bridge Approach",
-        "latitude": 37.7925,
-        "longitude": -122.3932,
-        "free_flow_speed": 50.0
-    }
+        "name": "PVNR Elevated Expressway",
+        "latitude": 17.3916,
+        "longitude": 78.4418,
+        "free_flow_speed": 65.0,
+    },
 }
 
 _cached_df: Optional[pd.DataFrame] = None

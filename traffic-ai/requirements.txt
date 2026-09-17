@@ -1,5 +1,5 @@
 fastapi
-uvicorn
+uvicorn[standard]
 pandas
 numpy
 scikit-learn
@@ -9,4 +9,7 @@ pydantic-settings
 streamlit
 plotly
 folium
+streamlit-folium
 requests
+pytest
+httpx
