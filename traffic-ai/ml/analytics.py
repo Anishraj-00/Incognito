@@ -8,6 +8,12 @@ def get_peak_hours(df: pd.DataFrame, location: str = None) -> dict:
     if df.empty:
         return {}
         
+    if 'hour' not in df.columns:
+        df = df.copy()
+        df['hour'] = df['timestamp'].dt.hour
+        df['day_of_week'] = df['timestamp'].dt.dayofweek
+        df['is_weekend'] = df['day_of_week'].isin([5, 6]).astype(int)
+        
     # Group by hour and day_of_week
     hourly = df.groupby(['is_weekend', 'hour'])['volume'].mean().reset_index()
     
