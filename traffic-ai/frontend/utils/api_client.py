@@ -49,6 +49,35 @@ LOCATIONS = {
     },
 }
 
+# Load additional locations from CSV (if present)
+import pandas as pd
+
+def _load_extra_locations(csv_path: str = os.path.join(os.path.dirname(__file__), '..', 'data', 'extra_locations.csv')):
+    """Read extra location CSV and return a dict of location entries.
+    Expected columns: location_id, latitude, longitude, historical_avg_volume
+    """
+    if not os.path.exists(csv_path):
+        return {}
+    df = pd.read_csv(csv_path)
+    extra = {}
+    for _, row in df.iterrows():
+        loc_id = str(row['location_id'])
+        extra[loc_id] = {
+            "id": loc_id,
+            "name": f"Extra Location {loc_id}",
+            "corridor": "User‑provided extra location",
+            "lat": float(row['latitude']),
+            "lon": float(row['longitude']),
+            "base_traffic": int(row['historical_avg_volume']),
+            "free_flow_speed": 45,
+            "capacity": 600,
+            "type": "Additional Site",
+        }
+    return extra
+
+# Merge extra locations into the main LOCATIONS dictionary
+LOCATIONS.update(_load_extra_locations())
+
 API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 
