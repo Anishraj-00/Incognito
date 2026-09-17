@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config.settings import settings
-from backend.routes import health, prediction
+from backend.routes import health, prediction, analytics, segments, congestion
 
 app = FastAPI(
     title=settings.api_title,
@@ -21,6 +21,9 @@ app.add_middleware(
 # Include route modules
 app.include_router(health.router)
 app.include_router(prediction.router, prefix="/api/v1")
+app.include_router(analytics.router, prefix="/api/v1")
+app.include_router(segments.router, prefix="/api/v1")
+app.include_router(congestion.router, prefix="/api/v1")
 
 @app.get("/", tags=["Root"])
 def root():
